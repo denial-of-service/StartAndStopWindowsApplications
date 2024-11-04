@@ -1,0 +1,31 @@
+# Stops processes whose name contains one or more of these names.
+# Run "Get-Process" in a terminal to obtain a list of all running processes and their ProcessName.
+# Run "Get-Process -Name *INSERT_PROCESS_NAME_HERE*" in a terminal to find all running processes containing that name and their ProcessName.
+# Example:
+#   stop_processes_containing_names = [
+#       'bitwarden',
+#       'discord',
+#       'epic',
+#       'nextcloud',
+#       'pia',
+#       'jetbrains',
+#       'msteams',
+#       'ms-teams',
+#       'radarr',
+#       'sonarr',
+#       'lidarr',
+#       'readarr',
+#       'whisparr',
+#   ]
+stop_processes_containing_names = [
+]
+
+# Starts applications whose executable can be located at this absolute path.
+# Example:
+#   start_applications_at_file_paths = [
+#       'C:\Program Files\Bitwarden\Bitwarden.exe',
+#       'C:\Program Files\CCleaner\CCleaner64.exe'
+#   ]
+start_applications_at_file_paths = [
+]
+
