@@ -28,19 +28,22 @@ fn run_script() -> Result<(), CustomError> {
     if !config.start_applications_at_file_paths.is_empty() { total_number_of_tasks += 1 };
     let mut progress = Progress::new(total_number_of_tasks);
 
-    progress.update_progress("Stopping processes...");
-    for process_name in config.stop_processes_containing_names.iter() {
-        println!("Stopping processes matching '{process_name}'");
-        match command::stop_process(process_name) {
-            Ok(_) => {}
-            Err(err) => return Err(err),
+    if !config.stop_processes_containing_names.is_empty() {
+        progress.update_progress("Stopping processes...");
+        for process_name in config.stop_processes_containing_names.iter() {
+            println!("Stopping processes matching '{process_name}'");
+            match command::stop_process(process_name) {
+                Ok(_) => {}
+                Err(err) => return Err(err),
+            }
         }
     }
-
-    progress.update_progress("Starting applications...");
-    for application_file_path in config.start_applications_at_file_paths.iter() {
-        println!("Starting application '{application_file_path}'");
-        command::start_application(application_file_path)?
+    if !config.start_applications_at_file_paths.is_empty() {
+        progress.update_progress("Starting applications...");
+        for application_file_path in config.start_applications_at_file_paths.iter() {
+            println!("Starting application '{application_file_path}'");
+            command::start_application(application_file_path)?
+        }
     }
     println!("Done! Ending script in {} seconds...", SUCCESS_MESSAGE_DISPLAY_DURATION.as_secs());
     sleep(SUCCESS_MESSAGE_DISPLAY_DURATION);
