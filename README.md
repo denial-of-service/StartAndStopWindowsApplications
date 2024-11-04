@@ -2,7 +2,7 @@
 
 StartAndStopWindowsApplications is a convenient script that starts and stops Windows applications of your choosing.
 
-# Prerequisites
+## Prerequisites
 
 Using a recent version of Windows 10 or 11.
 
